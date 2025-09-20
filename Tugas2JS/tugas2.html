@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Data Pegawai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Tabel Data Pegawai</h1>
+</header>
+
+<main>
+  <table id="tabelPegawai">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Jabatan</th>
+        <th>Status</th>
+        <th>Gaji Pokok</th>
+        <th>Tunjangan Jabatan</th>
+        <th>BPJS</th>
+        <th>Tunjangan Keluarga</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="8" id="totalGaji"></td>
+      </tr>
+    </tfoot>
+  </table>
+</main>
+
+<script>
+// Data pegawai
+const pegawai = {
+  nama: "Dodi Prayodi",
+  umur: 25,
+  jabatan: "Manajer",
+  status: "Menikah"
+};
+
+// Gaji pokok sesuai jabatan
+let gajiPokok = 0;
+if (pegawai.jabatan === "Manajer") {
+  gajiPokok = 15000000;
+} else if (pegawai.jabatan === "Asisten Manajer") {
+  gajiPokok = 10000000;
+} else if (pegawai.jabatan === "Staff") {
+  gajiPokok = 5000000;
+}
+
+// Tunjangan dan potongan
+const tunjanganJabatan = 0.15 * gajiPokok;
+const bpjs = 0.10 * gajiPokok;
+const tunjanganKeluarga = pegawai.status === "Menikah" ? 0.20 * gajiPokok : 0;
+
+// Total gaji
+const total = gajiPokok + tunjanganJabatan + bpjs + tunjanganKeluarga;
+
+// Cetak ke tabel 
+document.querySelector("#tabelPegawai tbody").innerHTML = `
+  <tr>
+    <td>${pegawai.nama}</td>
+    <td>${pegawai.umur}</td>
+    <td>${pegawai.jabatan}</td>
+    <td>${pegawai.status}</td>
+    <td>Rp ${gajiPokok}</td>
+    <td>Rp ${tunjanganJabatan}</td>
+    <td>Rp ${bpjs}</td>
+    <td>Rp ${tunjanganKeluarga}</td>
+  </tr>
+`;
+
+document.getElementById("totalGaji").textContent = "Total Gaji: Rp " + total;
+</script>
+
+</body>
+</html>

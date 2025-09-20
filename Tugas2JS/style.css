@@ -1,0 +1,45 @@
+:root {
+  --warna-utama: #062140;
+  --warna-table: #dccdcd;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2rem;
+  background: #7c7979;
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0f0e0e;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+  background: var(--warna-table);
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 0.7rem 1rem;
+  text-align: left;
+}
+
+thead {
+  background: var(--warna-utama);
+  color: #fff;
+}
+
+tfoot {
+  background: #eaeaea;
+  font-weight: bold;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: #f0f8ff;
+}
