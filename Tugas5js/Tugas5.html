@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manajemen Produk Toko</title>
+</head>
+<body>
+  <h2>Daftar Produk</h2>
+  <button id="btnTampil">Tampilkan Produk</button>
+  <button id="btnTambah">Tambah Produk</button>
+  <button id="btnHapus">Hapus Produk ID=2</button>
+
+  <script>
+   
+   // List data produk awal minimal 5 //
+
+    let produkList = [
+      { id: 1, nama: "Laptop", harga: 12000000 },
+      { id: 2, nama: "Smartphone", harga: 5000000 },
+      { id: 3, nama: "Ipad", harga: 7000000 },
+      { id: 4, nama: "HandPhone", harga: 1500000 },
+      { id: 5, nama: "Smartwatch", harga: 3000000 }
+    ];
+
+   
+    // tambah produk pakai spread operator //
+
+    function tambahProduk(id, nama, harga) {
+      produkList = [...produkList, { id, nama, harga }];
+    }
+
+
+    // hapus pakai rest parameter //
+
+    function hapusProduk(...idProduk) {
+      produkList = produkList.filter(p => !idProduk.includes(p.id));
+    }
+
+    function ambilProduk() {
+      return [...produkList];
+    }
+
+    // menampilkan semua produk dengan destructuring //
+    function tampilkanProduk() {
+      console.clear();
+      console.log("=== Daftar Produk ===");
+      ambilProduk().forEach(({ id, nama, harga }) => {
+        console.log(`ID: ${id} | ${nama} - Rp${harga.toLocaleString()}`);
+      });
+    }
+
+    // Event Listener //
+    document.getElementById("btnTampil").addEventListener("click", tampilkanProduk);
+
+    document.getElementById("btnTambah").addEventListener("click", () => {
+      tambahProduk(6, "Kamera", 4500000);
+      console.log("Produk Kamera berhasil ditambahkan");
+      tampilkanProduk();
+    });
+
+    document.getElementById("btnHapus").addEventListener("click", () => {
+      hapusProduk(2);
+      console.log("Produk dengan id 2 dihapus");
+      tampilkanProduk();
+    });
+
+   // tampil data awal //
+    tampilkanProduk();
+  </script>
+</body>
+</html>
